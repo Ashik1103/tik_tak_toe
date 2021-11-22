@@ -2,7 +2,7 @@ moves={'TL':" ",'TC':" ",'TR':" ",
        'ML':" ",'MC':" ",'MR':" ",
        'LL':" ",'LC':" ",'LR':" "}
 turn=True
-while True:
+for i in range(9):
     print(moves['TL']+"|"+moves['TC']+"|"+moves['TR'])
     print("_ _ _")
     print(moves['ML'] + "|" + moves['MC'] + "|" + moves['MR'])
@@ -61,17 +61,32 @@ while True:
     if turn==True:
         inp = input("Turn for X:")
         if(inp not in moves):
-            print("not true")
+            print("please enter a valid position")
+        if(inp in moves):
+            if(moves[inp] is not None):
+                print("Enter a position where its empty")
+                inp=input("Turn for X:")
+                moves[inp] = "X"
+                turn = False
+            else:
+                moves[inp] = "X"
+                turn = False
 
-        moves[inp] = "X"
-        turn = False
+
+
     elif turn==False:
         inp=input("Turn for O: ")
         if (inp not in moves):
-            print("not true")
+            print("please enter a valid position")
         if(inp in moves):
-            moves[inp] = "O"
-            turn = True
+            if (moves[inp] == 'X'):
+                print("Enter a position where O is there")
+                inp = input("Turn for O:")
+                moves[inp] = "O"
+                turn = True
+            else:
+                moves[inp] = "O"
+                turn = True
 
 
 
